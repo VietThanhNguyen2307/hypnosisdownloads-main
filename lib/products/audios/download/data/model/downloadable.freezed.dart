@@ -24,9 +24,7 @@ mixin _$Downloadable<T> {
   String? get offlineUrl => throw _privateConstructorUsedError;
   int get downloadedPercent => throw _privateConstructorUsedError;
 
-  /// Create a copy of Downloadable
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $DownloadableCopyWith<T, Downloadable<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -57,8 +55,6 @@ class _$DownloadableCopyWithImpl<T, $Res, $Val extends Downloadable<T>>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Downloadable
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,8 +125,6 @@ class __$$DownloadableImplCopyWithImpl<T, $Res>
       _$DownloadableImpl<T> _value, $Res Function(_$DownloadableImpl<T>) _then)
       : super(_value, _then);
 
-  /// Create a copy of Downloadable
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -237,9 +231,7 @@ class _$DownloadableImpl<T> implements _Downloadable<T> {
       offlineUrl,
       downloadedPercent);
 
-  /// Create a copy of Downloadable
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DownloadableImplCopyWith<T, _$DownloadableImpl<T>> get copyWith =>
@@ -271,11 +263,8 @@ abstract class _Downloadable<T> implements Downloadable<T> {
   String? get offlineUrl;
   @override
   int get downloadedPercent;
-
-  /// Create a copy of Downloadable
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DownloadableImplCopyWith<T, _$DownloadableImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
