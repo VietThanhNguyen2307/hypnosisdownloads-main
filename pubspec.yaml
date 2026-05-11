@@ -1,0 +1,110 @@
+name: hypnosis_downloads
+description: Online Self Hypnosis MP3 Audio & Scripts Center
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  error_handling:
+    path: packages/error_handling
+  cupertino_icons: ^1.0.2
+  flutter_secure_storage: ^10.0.0-beta.4
+  flutter_bloc: ^9.0.0
+  flutter_switch: ^0.3.2
+  dio: ^5.4.0
+  flutter_svg: ^2.0.9
+  flutter_spinkit: ^5.1.0
+  loader_overlay: ^5.0.0
+  provider: ^6.0.5
+  very_good_analysis: ^7.0.0
+  equatable: ^2.0.3
+  flow_builder: ^0.1.0
+  formz: ^0.8.0
+  listenable_stream: ^2.0.1
+  url_launcher: ^6.1.11
+  lottie: ^3.0.0
+  intl: any
+  carousel_slider: ^5.0.0
+  scroll_snap_list: ^0.9.1
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  collection: ^1.17.0
+  just_audio: ^0.9.34
+  path_provider: ^2.0.15
+  audio_video_progress_bar: ^2.0.1
+  carousel_indicator: ^1.0.6
+  flutter_downloader: ^1.11.1
+  device_info_plus: ^11.1.1
+  permission_handler: ^11.0.1
+  freezed_annotation: ^2.2.0
+  json_annotation: ^4.8.0
+  percent_indicator: ^4.2.3
+  curl_logger_dio_interceptor: ^1.0.0
+  dio_cache_interceptor: ^3.4.2
+  dio_cache_interceptor_hive_store: ^4.0.0
+  connectivity_plus: ^6.1.0
+  connectivity_plus_platform_interface: ^2.0.1
+  authentication_logic:
+    path: packages/authentication_logic
+  youtube_player_flutter: ^9.0.0
+  audio_service: ^0.18.10
+  firebase_crashlytics: ^4.1.4
+  firebase_core: ^3.7.0
+  cloud_firestore: ^5.4.5
+  html_character_entities: ^1.0.0+1
+  just_audio_background: ^0.0.1-beta.10
+  audio_session: ^0.1.16
+  app_tracking_transparency: ^2.0.4
+  flutter_pdfview: ^1.3.1
+  shared_preferences: ^2.1.2
+  firebase_analytics: ^11.3.4
+  build_resolvers: ^2.2.1
+  webview_flutter: ^4.2.2
+  webview_flutter_platform_interface: ^2.3.1
+  flutter_html: ^3.0.0-beta.2
+  package_info_plus: ^8.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+  mockito: ^5.3.2
+  build_runner: ^2.2.1
+  freezed: ^2.4.1
+  json_serializable: ^6.6.2
+  hive_generator: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/fonts/
+    - assets/animations/
+    - assets/icons/
+    - assets/icons_bold/
+    - assets/icons_outline/
+    - assets/icons/short_arrow/
+    - assets/sounds/
+    - assets/images/
+
+  fonts:
+    - family: Open Sans
+      fonts:
+        - asset: assets/fonts/OpenSans-Light.ttf
+          weight: 300
+        - asset: assets/fonts/OpenSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/OpenSans-Semibold.ttf
+          weight: 600
+        - asset: assets/fonts/OpenSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/OpenSans-ExtraBold.ttf
+          weight: 800

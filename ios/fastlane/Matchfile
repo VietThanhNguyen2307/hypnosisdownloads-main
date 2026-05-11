@@ -1,0 +1,4 @@
+git_url("https://github.com/HotShots-Labs/match.git")
+
+app_identifier("com.uncommonknowledge.hypnosisapp")
+username("alexsheikodev@gmail.com")

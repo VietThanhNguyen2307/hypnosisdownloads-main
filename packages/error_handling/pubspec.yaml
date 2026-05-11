@@ -1,0 +1,12 @@
+name: error_handling
+description: Dart package which manages error handling.
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dio: ^5.4.0

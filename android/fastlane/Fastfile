@@ -1,0 +1,134 @@
+default_platform(:android)
+
+FLAVOR_NAME=ENV["FLAVOR_NAME"]
+VERSION_NUMBER=ENV["VERSION_NUMBER"] ||= "1.0"
+
+TEMP_KEYCHAIN_USER = ENV["TEMP_KEYCHAIN_USER"]
+TEMP_KEYCHAIN_PASSWORD = ENV["TEMP_KEYCHAIN_PASSWORD"]
+GIT_AUTHORIZATION=ENV["GIT_AUTHORIZATION"]
+
+APP_ID = ENV["APP_ID"]
+APP_STORE_ID = ENV["APP_STORE_ID"]
+APP_STORE_CONNECT_TEAM_ID = ENV["APP_STORE_CONNECT_TEAM_ID"]
+PROVISIONING_PROFILE_SPECIFIER = "match Appstore #{APP_ID}"
+APP_STORE_API_KEY_ID=ENV["APP_STORE_API_KEY_ID"]
+APP_STORE_API_KEY_ISSUER=ENV["APP_STORE_API_KEY_ISSUER"]
+APP_STORE_API_KEY_CONTENT=ENV["APP_STORE_API_KEY_CONTENT"]
+TESTER_GROUP_ANDROID_NAME = ENV["TESTER_GROUP_ANDROID_NAME"]
+FIREBASE_APP_ID = ENV["FIREBASE_APP_ID"]
+
+platform :android do
+  def api_key
+    # Check if APP_STORE_API_KEY_ID is provided and not empty
+    if !ENV['APP_STORE_API_KEY_ID'].nil? && !ENV['APP_STORE_API_KEY_ID'].empty?
+      app_store_connect_api_key(
+        key_id: "#{APP_STORE_API_KEY_ID}",
+        issuer_id: "#{APP_STORE_API_KEY_ISSUER}",
+        duration: 1200, # maximum
+        key_content: "#{APP_STORE_API_KEY_CONTENT}",
+        is_key_content_base64: true,
+      )
+    end
+  end
+
+  desc "Submit a new build"
+  lane :preRelease do
+      raise_error_if_environment_variables_not_set
+      
+      increment_version
+
+      build_android_app_as_apk
+
+      apk_suffix = FLAVOR_NAME.nil? || FLAVOR_NAME.empty? ? '' : "-#{FLAVOR_NAME}"
+      firebase_options = {
+        app: "#{FIREBASE_APP_ID}",
+        apk_path: "../build/app/outputs/flutter-apk/app#{apk_suffix}-release.apk",
+        groups: "#{TESTER_GROUP_ANDROID_NAME}", # Testers groups, comma-separated
+      }
+      # Add service_credentials_file to the options hash if FIREBASE_SERVICE_CREDENTIALS_JSON is not null
+      if !ENV['FIREBASE_SERVICE_CREDENTIALS_JSON'].nil?
+        firebase_options[:service_credentials_file] = "app/service-account.json"
+      end
+      # Call firebase_app_distribution with the assembled options
+      firebase_app_distribution(**firebase_options)
+
+      # upload_to_play_store(
+      #   track: 'internal',
+      #   # aab: "../build/app/outputs/bundle/#{FLAVOR_NAME}Release/app-#{FLAVOR_NAME}-release.aab",
+      #   aab: "../build/app/outputs/bundle/release/app-release.aab",
+      #   json_key_data: "#{PLAY_STORE_CONFIG_JSON}",
+      #   release_status: "draft",
+      # )
+      commit_version_change
+  end
+
+  def raise_error_if_environment_variables_not_set
+    if ENV['APP_ID'].nil? || ENV['APP_ID'].empty?
+      # Raise user-friendly error
+      UI.user_error!("It looks like environmental variables are not configured. Set them in GitHub Actions secrets.")
+    end
+  end
+
+  lane :increment_version do
+    build_number = current_build_number + 1
+    set_build_number value: build_number
+    set_version_number value: build_number
+  end
+
+  lane :build_android_app_as_apk do
+    if FLAVOR_NAME.nil? || FLAVOR_NAME.empty?
+      system("flutter build apk --release -t lib/main.dart --no-tree-shake-icons")
+    else
+      system("flutter build apk --release -t lib/main_#{FLAVOR_NAME}.dart --flavor #{FLAVOR_NAME} --no-tree-shake-icons")
+    end
+  end
+
+  lane :current_build_number do
+    testflight_options = {
+      app_identifier: "#{APP_ID}",
+      team_id: "#{APP_STORE_CONNECT_TEAM_ID}"
+    }
+
+    # Add the api_key to the options hash if it's not nil
+    testflight_options[:api_key] = api_key unless api_key.nil?
+
+    # Call latest_testflight_build_number with the assembled options
+    ios_build_number = latest_testflight_build_number(**testflight_options)
+
+    # Keep Android and iOS build numbers in sync
+    [android_version_from_gradle, ios_build_number].max
+	end
+
+  lane :android_version_from_gradle do
+    path = '../app/build.gradle'
+    re = /versionCode\s+(\d+)/ 
+    s = File.read(path)
+    s[re, 1].to_i
+  end
+
+  lane :set_build_number do |options|
+    new_build_number = options[:value]
+    increment_version_code(
+      gradle_file_path: "app/build.gradle",
+      version_code: new_build_number
+    )
+  end
+
+  # Setting version number too, because analytics is based on it
+  lane :set_version_number do |options|
+    new_build_number = options[:value]
+    version_number = "#{VERSION_NUMBER}.#{new_build_number}"
+    increment_version_name(
+      gradle_file_path: "app/build.gradle",
+      version_name: version_number
+    )
+  end
+
+  lane :commit_version_change do
+    versionCode = current_build_number
+    git_commit(path: "*.gradle", message: "Android Version Bump to #{versionCode}")
+    add_git_tag(build_number: versionCode)
+    sh("git pull")
+    push_to_git_remote
+  end
+end

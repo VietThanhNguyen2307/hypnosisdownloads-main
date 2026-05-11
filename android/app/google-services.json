@@ -1,0 +1,119 @@
+{
+  "project_info": {
+    "project_number": "398948131114",
+    "firebase_url": "https://hypnosis-downloads.firebaseio.com",
+    "project_id": "hypnosis-downloads",
+    "storage_bucket": "hypnosis-downloads.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398948131114:android:0ce008c1606c179e7afe53",
+        "android_client_info": {
+          "package_name": "com.hypnosisdownloads.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398948131114-qohsveg32al2g44h9a1e11ub9k8fq3lk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOX79OWfPuCW6Y2PTtqunVdceG-JgLBRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398948131114-qohsveg32al2g44h9a1e11ub9k8fq3lk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "398948131114-5bthoje89r0bdu58nrjg95s491k4021u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hypnosisdownloads.dev"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398948131114:android:ce972a049d312ad17afe53",
+        "android_client_info": {
+          "package_name": "com.uncommonknowledge.hypnosisapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398948131114-qohsveg32al2g44h9a1e11ub9k8fq3lk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOX79OWfPuCW6Y2PTtqunVdceG-JgLBRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398948131114-qohsveg32al2g44h9a1e11ub9k8fq3lk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "398948131114-5bthoje89r0bdu58nrjg95s491k4021u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hypnosisdownloads.dev"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398948131114:android:ad24a6dec1c1588a7afe53",
+        "android_client_info": {
+          "package_name": "com.uncommonknowledge.hypnosisapp.v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398948131114-qohsveg32al2g44h9a1e11ub9k8fq3lk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOX79OWfPuCW6Y2PTtqunVdceG-JgLBRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398948131114-qohsveg32al2g44h9a1e11ub9k8fq3lk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "398948131114-5bthoje89r0bdu58nrjg95s491k4021u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hypnosisdownloads.dev"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

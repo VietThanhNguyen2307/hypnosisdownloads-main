@@ -1,0 +1,22 @@
+// ignore_for_file: avoid_field_initializers_in_const_classes
+
+import 'package:flutter/material.dart';
+import 'package:hypnosis_downloads/app/view/common/colors.dart';
+
+class BodyText extends StatelessWidget {
+  const BodyText(this.data, {Key? key})
+      : _color = ComponentColors.defaultBodyTextColor,
+        super(key: key);
+
+  final String data;
+  final Color _color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      data,
+      style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: _color),
+      textAlign: TextAlign.center,
+    );
+  }
+}

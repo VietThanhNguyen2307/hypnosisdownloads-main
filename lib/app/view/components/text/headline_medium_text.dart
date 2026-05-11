@@ -1,0 +1,56 @@
+// ignore_for_file: avoid_field_initializers_in_const_classes
+
+import 'package:flutter/material.dart';
+import 'package:hypnosis_downloads/app/view/common/colors.dart';
+
+class HeadlineMediumText extends StatelessWidget {
+  const HeadlineMediumText(
+    this.data, {
+    Key? key,
+    Color? color,
+    this.textAlign,
+    this.overflow,
+    this.maxLines,
+    this.softWrap,
+  })  : _color = color ?? ComponentColors.defaultHeadlineTextColor,
+        super(key: key);
+
+  const HeadlineMediumText.light(
+    this.data, {
+    Key? key,
+    this.textAlign,
+    this.overflow,
+    this.maxLines,
+    this.softWrap,
+  })  : _color = ComponentColors.defaultHeadlineTextColor,
+        super(key: key);
+
+  const HeadlineMediumText.dark(
+    this.data, {
+    Key? key,
+    this.textAlign,
+    this.overflow,
+    this.maxLines,
+    this.softWrap,
+  })  : _color = ComponentColors.secondaryHeadlineTextColor,
+        super(key: key);
+
+  final String data;
+  final Color _color;
+  final TextAlign? textAlign;
+  final TextOverflow? overflow;
+  final int? maxLines;
+  final bool? softWrap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      data,
+      style: Theme.of(context).textTheme.displayMedium?.copyWith(color: _color),
+      textAlign: textAlign ?? TextAlign.center,
+      overflow: overflow,
+      maxLines: maxLines,
+      softWrap: softWrap,
+    );
+  }
+}
